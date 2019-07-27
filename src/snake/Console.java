@@ -11,11 +11,11 @@ import javax.swing.JTextArea;
 
 class Console {
   final JFrame frame = new JFrame();
-  public JTextArea textArea = new JTextArea(24, 80);
+  public JTextArea textArea = new JTextArea(30, 40);
   public Console() {
     textArea.setBackground(Color.WHITE);
     textArea.setForeground(Color.BLACK);
-    textArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, 14));
+    textArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
     System.setOut(new PrintStream(new OutputStream() {
       @Override
       public void write(int b) throws IOException {
@@ -28,9 +28,10 @@ class Console {
   public void clear() {
 	  textArea.setText("");
   }
-  public void init() {
+  public void init(KeyReader kr) {
     frame.pack();
     frame.setVisible(true);
+    textArea.addKeyListener(kr);
   }
   public JFrame getFrame() {
     return frame;

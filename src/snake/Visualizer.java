@@ -5,11 +5,13 @@ import snake.Constants;
 public class Visualizer {
 	
 	private static char WALL = '#';
-	private static char SNAKE_BODY = 'c';
+	private static char SNAKE_BODY = 'o';
 	private static char SNAKE_HEAD = 'x';
-	private static char FOOD = '?';
+	private static char FOOD = '$';
 	
 	private static char[][] mapStr;
+	
+	public static Console console;
 	
 	private static Snake snake;
 	
@@ -20,13 +22,17 @@ public class Visualizer {
 	
 	private static void print() {
 		String foo = "";
+		//Draw top padding
+		for (int i = 0; i < Constants.TOP_PADDING; i++) foo += "\n";
 		for (int i = 0; i < Constants.HEIGHT; i++) {
+			for (int k = 0; k < Constants.LEFT_PADDING; k++) foo += " ";
 			for (int j = 0; j < Constants.WIDTH; j++) {
 				foo += Visualizer.mapStr[i][j];
+				foo += " ";
 			}
 			foo += "\n";
 		}
-		System.out.println(foo);
+		console.textArea.setText(foo);
 	}
 	
 	public static void draw() {

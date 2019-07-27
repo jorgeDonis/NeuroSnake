@@ -1,10 +1,5 @@
 package snake;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.util.Scanner;
-
 import javax.swing.JFrame;
 
 public class Game extends JFrame {
@@ -15,34 +10,34 @@ public class Game extends JFrame {
 	
 	public static Console console;
 
+	public KeyReader kr;
+	
 	public Game() {
 		super();
+		kr = new KeyReader();
 		setSize(600, 600);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		console = new Console();
-		console.init();
+		console.init(kr);
 		setVisible(false);
 		console.getFrame().setLocation(getX() + getWidth() + getInsets().right, getY());
 	}
 
 	public static void init() {
 		snake = new Snake();
+		new Visualizer(Game.snake);
 		Game.foodPosition = new Coordinate(snake);
-		Visualizer vis = new Visualizer(snake);
+		Visualizer.console = console;
 	}
 
-	public static void play() {
+	public void play() {
 		init();
 		do {
-			KeyReader kr = new KeyReader();
-			Thread keyReader = new Thread(kr);
-			keyReader.start();
 			 try {
 				 Visualizer.draw();
 				 Thread.sleep(Constants.SLEEP_TIME);
 				 snake.move(kr.readKey);
-				 console.clear();
 			} catch (InterruptedException e) {}
 		} while(!snake.hasCrashed());
 		System.out.println("\n \n \t \t GAME OVER!");

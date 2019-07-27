@@ -10,6 +10,7 @@ public class Snake {
 	// Last element is the head
 	public Stack<Coordinate> shape = new Stack<Coordinate>();
 	private Stack<Direction> directions = new Stack<Direction>();
+	private boolean oppositeCrash = false;
 
 	private void move(int coordIndex, Direction dir) {
 		Coordinate coord = shape.get(coordIndex);
@@ -54,8 +55,8 @@ public class Snake {
 		if (wallCollision)
 			return true;
 		else if (shape.size() != 1)
-			return (shape.subList(1, shape.size() - 1).contains(head));
-		return false;
+			return (shape.subList(1, shape.size() - 1).contains(head)) || oppositeCrash;
+		return oppositeCrash;
 	}
 
 	private boolean eats(Direction dir) {
@@ -100,16 +101,43 @@ public class Snake {
 		}
 	}
 
+	public void checkOppositeCrash(Direction dir) {
+		if (shape.size() > 1) {
+			switch (dir) {
+			case Down:
+				oppositeCrash = (directions.get(0).equals(Direction.Up));
+				break;
+			case Left:
+				oppositeCrash = (directions.get(0).equals(Direction.Right));
+				break;
+			case Right:
+				oppositeCrash = (directions.get(0).equals(Direction.Left));
+				break;
+			case Up:
+				oppositeCrash = (directions.get(0).equals(Direction.Down));
+				break;
+			}
+		}
+	}
+
 	public void move(KeyEvent e) {
 		if (e != null) {
-			if (e.getKeyCode() == (KeyEvent.VK_LEFT))
+			if (e.getKeyCode() == (KeyEvent.VK_LEFT)) {
+				checkOppositeCrash(Direction.Left);
 				move(Direction.Left);
-			else if (e.getKeyCode() == (KeyEvent.VK_DOWN))
-				move(Direction.Up);
-			else if (e.getKeyCode() == (KeyEvent.VK_UP))
-				move(Direction.Down);
-			else if (e.getKeyCode() == (KeyEvent.VK_RIGHT))
+			}
+			else if (e.getKeyCode() == (KeyEvent.VK_RIGHT)) {
+				checkOppositeCrash(Direction.Right);
 				move(Direction.Right);
+			}
+			else if (e.getKeyCode() == (KeyEvent.VK_DOWN)) {
+				checkOppositeCrash(Direction.Up);
+				move(Direction.Up);
+			}
+			else if (e.getKeyCode() == (KeyEvent.VK_UP)) {
+				checkOppositeCrash(Direction.Down);
+				move(Direction.Down);
+			}
 		} else
 			move(directions.get(0));
 	}

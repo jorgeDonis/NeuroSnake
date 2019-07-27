@@ -1,55 +1,34 @@
 package snake;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 import javax.swing.JFrame;
-import javax.swing.JRootPane;
 
-public class KeyReader implements Runnable {
-	
+public class KeyReader implements KeyListener {
+
 	public KeyEvent readKey;
+
+	KeyReader() {}
 	
-	KeyReader(){}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		readKey = e;
+	}
 
 	@Override
-	public void run() {
-		getCh();
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
 	}
-	
-	public void getCh() {  
-        final JFrame frame = new JFrame();  
-        synchronized (frame) {  
-            frame.setUndecorated(true);  
-            frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);  
-            frame.addKeyListener(new KeyListener() {
-                @Override 
-                public void keyPressed(KeyEvent e) {  
-                    synchronized (frame) {  
-                        frame.setVisible(false);  
-                        frame.dispose();  
-                        frame.notify();
-                        readKey = e;
-                    }  
-                }  
-                @Override 
-                public void keyReleased(KeyEvent e) {  
-                }  
-                @Override 
-                public void keyTyped(KeyEvent e) {  
-                }  
-            });  
-            frame.setVisible(true);  
-            try {  
-                frame.wait();  
-            } catch (InterruptedException e1) {  
-            }  
-        }
-        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-    }
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
 
 }
