@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-class Console {
+public class Console {
   final JFrame frame = new JFrame();
   public JTextArea textArea = new JTextArea(30, 40);
   public Console() {

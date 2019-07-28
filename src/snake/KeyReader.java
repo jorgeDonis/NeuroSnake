@@ -12,7 +12,7 @@ public class KeyReader implements KeyListener {
 
 	public KeyEvent readKey;
 
-	KeyReader() {}
+	public KeyReader() {}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {

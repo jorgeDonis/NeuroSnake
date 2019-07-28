@@ -1,6 +1,9 @@
-package snake;
+package basicTypes;
 
 import java.util.concurrent.ThreadLocalRandom;
+
+import snake.Constants;
+import snake.Snake;
 
 public class Coordinate {
 	

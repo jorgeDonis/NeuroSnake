@@ -1,5 +1,7 @@
 package snake;
 
+import basicTypes.Coordinate;
+import game.Game;
 import snake.Constants;
 
 public class Visualizer {

@@ -1,10 +1,12 @@
 package snake;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
+
+import basicTypes.Coordinate;
+import basicTypes.Direction;
+import game.Game;
 
 public class Snake {
 	// Last element is the head
