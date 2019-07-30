@@ -5,4 +5,5 @@ public abstract class Neuron {
 	public Neuron() {
 		rawValue = 0;
 	}
+	abstract void randomInit();
 }

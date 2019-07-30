@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import basicTypes.Coordinate;
 import brain.Brain;
+import snake.Snake;
 
 public class BrainTest {
 
@@ -15,7 +17,14 @@ public class BrainTest {
 
 	@Test
 	public void testBrain() {
-		Brain brain = new Brain(2, 1, 2, 2); 
+		Brain brain = new Brain();
+		Snake snake = new Snake();
+		Coordinate foodPosition = new Coordinate(snake);
+		brain.randomInit(false);
+		brain.readInput(snake, foodPosition);
+		brain.propagate();
+		System.out.println("\n");
+		brain.print();
 	}
 
 }

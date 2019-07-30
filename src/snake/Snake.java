@@ -61,7 +61,7 @@ public class Snake {
 		return oppositeCrash;
 	}
 
-	private boolean eats(Direction dir) {
+	private boolean eats(Direction dir, Coordinate foodLocation) {
 		Coordinate head = shape.get(0);
 		Coordinate newCoord = null;
 		switch (dir) {
@@ -80,18 +80,18 @@ public class Snake {
 		default:
 			return false;
 		}
-		if (Game.foodPosition.equals(newCoord)) {
+		if (foodLocation.equals(newCoord)) {
 			shape.add(0, newCoord);
 			directions.set(0, dir);
 			directions.add(0, dir);
-			Game.foodPosition = new Coordinate(this);
+			foodLocation.setLocation(new Coordinate(this));
 			return true;
 		}
 		return false;
 	}
 
-	public void move(Direction dir) {
-		if (!eats(dir)) {
+	public void move(Direction dir, Coordinate foodLocation) {
+		if (!eats(dir, foodLocation)) {
 			directions.set(0, dir);
 			move(0, dir);
 			for (int i = 1; i < shape.size(); i++) {
@@ -122,26 +122,26 @@ public class Snake {
 		}
 	}
 
-	public void move(KeyEvent e) {
+	public void move(KeyEvent e, Coordinate foodLocation) {
 		if (e != null) {
 			if (e.getKeyCode() == (KeyEvent.VK_LEFT)) {
 				checkOppositeCrash(Direction.Left);
-				move(Direction.Left);
+				move(Direction.Left, foodLocation);
 			}
 			else if (e.getKeyCode() == (KeyEvent.VK_RIGHT)) {
 				checkOppositeCrash(Direction.Right);
-				move(Direction.Right);
+				move(Direction.Right, foodLocation);
 			}
 			else if (e.getKeyCode() == (KeyEvent.VK_DOWN)) {
 				checkOppositeCrash(Direction.Up);
-				move(Direction.Up);
+				move(Direction.Up, foodLocation);
 			}
 			else if (e.getKeyCode() == (KeyEvent.VK_UP)) {
 				checkOppositeCrash(Direction.Down);
-				move(Direction.Down);
+				move(Direction.Down, foodLocation);
 			}
 		} else
-			move(directions.get(0));
+			move(directions.get(0), foodLocation);
 	}
 
 }

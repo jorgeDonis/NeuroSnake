@@ -48,5 +48,10 @@ public class Coordinate {
 		return true;
 	}
 	
+	public void setLocation(Coordinate coord) {
+		x = coord.x;
+		y = coord.y;
+	}
+	
 	
 }

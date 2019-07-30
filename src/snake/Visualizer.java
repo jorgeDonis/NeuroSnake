@@ -1,7 +1,6 @@
 package snake;
 
 import basicTypes.Coordinate;
-import game.Game;
 import snake.Constants;
 
 public class Visualizer {
@@ -37,7 +36,7 @@ public class Visualizer {
 		console.textArea.setText(foo);
 	}
 	
-	public static void draw() {
+	public static void draw(Coordinate foodPosition) {
 		//Draw the borders and the snake
 		for (int i = 0; i < Constants.HEIGHT; i++) {
 			for (int j = 0; j < Constants.WIDTH; j++) {
@@ -55,7 +54,7 @@ public class Visualizer {
 		Coordinate headPosition = Visualizer.snake.getHeadPos();
 		Visualizer.mapStr[headPosition.y][headPosition.x] = SNAKE_HEAD;
 		//Draw the food
-		Visualizer.mapStr[Game.foodPosition.y][Game.foodPosition.x] = FOOD;
+		Visualizer.mapStr[foodPosition.y][foodPosition.x] = FOOD;
 		Visualizer.print();
 	}
 }

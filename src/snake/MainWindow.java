@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import game.BrainGame;
 import game.HumanGame;
 
 import java.awt.Dimension;
@@ -23,7 +24,7 @@ public class MainWindow {
 	private JFrame frame;
 	private JTextField textField;
 	
-	public String brainDirectory = "";
+	public String brainDirectory = new java.io.File("./Brains").getAbsolutePath();
 	
 	/**
 	 * Launch the application.
@@ -77,6 +78,13 @@ public class MainWindow {
 
 		JButton button = new JButton("Play (brain)");
 		button.setFont(new Font("Dialog", Font.BOLD, 14));
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Thread t = new Thread(new BrainGame());
+				t.start();				
+			}
+		});
 		button.setBounds(324, 91, 157, 42);
 		frame.getContentPane().add(button);
 

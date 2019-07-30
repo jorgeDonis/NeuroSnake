@@ -4,15 +4,13 @@ import javax.swing.JFrame;
 
 import basicTypes.Coordinate;
 import snake.Console;
-import snake.Constants;
-import snake.KeyReader;
 import snake.Snake;
 import snake.Visualizer;
 
 public abstract class Game extends JFrame implements Runnable {
 
-	public static Snake snake;
-	public static Coordinate foodPosition;
+	public Snake snake;
+	public Coordinate foodPosition;
 	public static Console console;
 	public static Visualizer vis;
 	
@@ -27,9 +25,9 @@ public abstract class Game extends JFrame implements Runnable {
 		console.init(null);
 		console.getFrame().setLocation(getX() + getWidth() + getInsets().right, getY());
 		snake = new Snake();
-		new Visualizer(Game.snake);
+		new Visualizer(snake);
 		Visualizer.console = console;
-		Game.foodPosition = new Coordinate(snake);
+		foodPosition = new Coordinate(snake);
 	}
 	
 	@Override
