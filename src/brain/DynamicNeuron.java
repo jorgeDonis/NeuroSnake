@@ -13,21 +13,29 @@ public class DynamicNeuron extends Neuron {
 		super();
 		theta = 0;
 		this.predecesors = predecesors;
-		weights = new double[predecesors.length];
+		setWeights(new double[predecesors.length]);
 	}
 
 	@Override
 	void randomInit() {
 		Random rng = new Random();
-		for (int i = 0; i < weights.length; i++)
-			weights[i] = (rng.nextDouble() * 20) - 10;
+		for (int i = 0; i < getWeights().length; i++)
+			getWeights()[i] = (rng.nextDouble() * 20) - 10;
 	}
 	
 	protected void propagate() {
 		for (int i = 0; i < predecesors.length; i++)
-			rawValue += predecesors[i].rawValue * weights[i];
+			rawValue += predecesors[i].rawValue * getWeights()[i];
 		rawValue += theta;
 		rawValue = Brain.sigmoid(rawValue);
+	}
+
+	public double[] getWeights() {
+		return weights;
+	}
+
+	public void setWeights(double[] weights) {
+		this.weights = weights;
 	}
 	
 }

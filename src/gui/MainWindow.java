@@ -1,4 +1,4 @@
-package snake;
+package gui;
 
 import java.awt.EventQueue;
 
@@ -24,7 +24,7 @@ public class MainWindow {
 	private JFrame frame;
 	private JTextField textField;
 	
-	public String brainDirectory = new java.io.File("./Brains").getAbsolutePath();
+	public String brainDirectory = new java.io.File("Brains").getAbsolutePath();
 	
 	/**
 	 * Launch the application.
@@ -91,6 +91,12 @@ public class MainWindow {
 		JButton button_1 = new JButton("Train");
 		button_1.setFont(new Font("Dialog", Font.BOLD, 14));
 		button_1.setBounds(517, 91, 157, 42);
+		button_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new TrainingWindow();
+			}
+		});
 		frame.getContentPane().add(button_1);
 
 		JLabel lblNeuralModelsSave = new JLabel("neural models save folder:");
@@ -104,6 +110,7 @@ public class MainWindow {
 		textField.setBounds(224, 181, 417, 22);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+		textField.setText(brainDirectory);
 
 		JButton btnSelect = new JButton("select");
 		btnSelect.addActionListener(new ActionListener() {

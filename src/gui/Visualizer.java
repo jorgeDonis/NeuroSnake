@@ -1,7 +1,9 @@
-package snake;
+package gui;
 
 import basicTypes.Coordinate;
+import snake.Console;
 import snake.Constants;
+import snake.Snake;
 
 public class Visualizer {
 	

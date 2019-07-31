@@ -3,9 +3,9 @@ package game;
 import javax.swing.JFrame;
 
 import basicTypes.Coordinate;
+import gui.Visualizer;
 import snake.Console;
 import snake.Snake;
-import snake.Visualizer;
 
 public abstract class Game extends JFrame implements Runnable {
 

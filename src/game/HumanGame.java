@@ -1,7 +1,7 @@
 package game;
 
 import snake.KeyReader;
-import snake.Visualizer;
+import gui.Visualizer;
 import snake.Constants;
 
 public class HumanGame extends Game {

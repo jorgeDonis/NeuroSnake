@@ -6,6 +6,9 @@ import snake.Snake;
 
 import static snake.Constants.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Brain {
 
 	public InputLayer input;
@@ -94,5 +97,11 @@ public class Brain {
 			throw new RuntimeException("Unexpected neural network output");
 		}
 	}
-
+	
+	public List<double[][]> getWeights(){
+		List<double[][]> allWeights = new ArrayList<double[][]>(dynamicLayers.length);
+		for (DynamicLayer layer : dynamicLayers)
+			allWeights.add(layer.getWeights());
+		return allWeights;
+	}
 }

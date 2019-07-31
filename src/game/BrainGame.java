@@ -1,8 +1,8 @@
 package game;
 
 import brain.Brain;
+import gui.Visualizer;
 import snake.Constants;
-import snake.Visualizer;
 
 public class BrainGame extends Game {
 
