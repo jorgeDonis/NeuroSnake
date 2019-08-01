@@ -13,6 +13,7 @@ public class Snake {
 	public Stack<Coordinate> shape = new Stack<Coordinate>();
 	private Stack<Direction> directions = new Stack<Direction>();
 	private boolean oppositeCrash = false;
+	public int fitness;
 
 	private void move(int coordIndex, Direction dir) {
 		Coordinate coord = shape.get(coordIndex);
@@ -40,6 +41,7 @@ public class Snake {
 		int y = ThreadLocalRandom.current().nextInt(1, Constants.HEIGHT - 1);
 		shape.add(new Coordinate(x, y));
 		directions.add(Direction.Still);
+		fitness = 0;
 	}
 
 	public boolean isAt(Coordinate coord) {
@@ -85,6 +87,7 @@ public class Snake {
 			directions.set(0, dir);
 			directions.add(0, dir);
 			foodLocation.setLocation(new Coordinate(this));
+			fitness++;
 			return true;
 		}
 		return false;

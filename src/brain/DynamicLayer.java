@@ -12,13 +12,13 @@ public class DynamicLayer extends Layer {
 		for (int i = 0; i < neurons.length; i++)
 			neurons[i] = new DynamicNeuron(predecesor.neurons);
 	}
-	
+
 	public void propagate() {
 		for (int i = 0; i < neurons.length; i++)
 			((DynamicNeuron) neurons[i]).propagate();
 	}
-	
-	public double[][] getWeights(){
+
+	public double[][] getWeights() {
 		double[][] layerWeights = new double[neurons.length][];
 		for (int i = 0; i < neurons.length; i++) {
 			int n = ((DynamicNeuron) neurons[i]).getWeights().length;
@@ -28,5 +28,10 @@ public class DynamicLayer extends Layer {
 			}
 		}
 		return layerWeights;
+	}
+
+	public void setWeights(double[][] layerWeights) {
+		for (int i = 0; i < neurons.length; i++)
+			((DynamicNeuron) neurons[i]).setWeights(layerWeights[i]);
 	}
 }

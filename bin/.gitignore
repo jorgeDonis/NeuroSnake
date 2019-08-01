@@ -1,8 +1,4 @@
-/snake/
-/game/
-/brain/
-/basicTypes/
-/gui/
 /training/
+/gui/
+/snake/
 /genetic/
-/tests/

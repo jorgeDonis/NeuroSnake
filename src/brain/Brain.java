@@ -104,4 +104,9 @@ public class Brain {
 			allWeights.add(layer.getWeights());
 		return allWeights;
 	}
+	
+	public void setWeights(List<double[][]> weights) {
+		for (int i = 0; i < dynamicLayers.length; i++)
+			dynamicLayers[i].setWeights(weights.get(i));
+	}
 }
